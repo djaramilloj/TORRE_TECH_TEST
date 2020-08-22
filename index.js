@@ -10,6 +10,12 @@ var cookieParser = require('cookie-parser');
 app.use(cookieParser());
 require("firebase/firestore");
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+  
 const firebaseConfig = {
     apiKey: process.env.FIREBASE_API,
     authDomain: process.env.AUTH_DOMAIN,
