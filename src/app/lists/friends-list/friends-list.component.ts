@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HoldDataService } from '../../core/hold-data.service';
 import { FetchDataService } from '../../core/fetch-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-friends-list',
@@ -15,10 +16,14 @@ export class FriendsListComponent implements OnInit {
     // services
     private holdData: HoldDataService,
     private fetchData: FetchDataService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.getCurrentFriends();
+    if (!this.holdData.userInfo) {
+      this.router.navigate(['auth/login'])
+    }
   }
 
   getCurrentFriends() {

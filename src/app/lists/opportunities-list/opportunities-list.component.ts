@@ -15,6 +15,7 @@ export class OpportunitiesListComponent implements OnInit {
   constructor(
     // services
     private fetchdata: FetchDataService,
+    
     // angular
     private router: Router,
   ) { }

@@ -21,6 +21,9 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = this.holdData.userInfo;
+    if (!this.user) {
+      this.router.navigate(['auth/login'])
+    }
   }
 
   friendsList() {
