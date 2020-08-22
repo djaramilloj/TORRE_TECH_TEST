@@ -4,7 +4,13 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
-    "public": "dist/torre-frontend",
+    "public": "dist",
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
     "ignore": [
       "firebase.json",
       "**/.*",
