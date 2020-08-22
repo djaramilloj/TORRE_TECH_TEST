@@ -10,3 +10,4 @@
 10. finished opportunities layout and user is now able to search for top job opportunities (10:30 pm)
 11. user can view jop opportunities details (11:00 pm) 
 12. finished test -> frontend deployed with firebase hosting / backend deployed with heroku (11:50pm)
+13. Error fixes regarding scrapper and typos fixes (1:15am)
