@@ -3,9 +3,11 @@ const puppeteer = require('puppeteer');
 async function run(username) {
 
     const browser = await puppeteer.launch( {
-        headless: false  //change to true in prod!
+        headless: true,
+        args: ['--no-sandbox']
     }); 
 
+    
     const page = await browser.newPage(); 
 
     await page.goto(`https://torre.bio/api/bios/${username}`);
