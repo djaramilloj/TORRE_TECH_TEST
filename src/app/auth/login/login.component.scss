@@ -1,0 +1,25 @@
+.container-signup {
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h4 {
+        margin-bottom: 30px;
+    }
+}
+
+.actions-group {
+    display: flex;
+    flex-direction: row;
+    input {
+        margin-right: 7px;
+    }
+}
+
+.login_button {
+    margin-top: 10px;
+}

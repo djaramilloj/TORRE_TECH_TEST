@@ -1,0 +1,18 @@
+<div class="container-fluid lists-fr">
+    <h2>Add your friends from Torre</h2>
+    <h4>Enter you friends' Torre username and add them to your personal list of friends</h4>
+    <div class="actions-group">
+        <input type="text" [(ngModel)]="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
+        <button type="button" class="btn btn-primary" (click)="addFriend()">Add</button>
+    </div>
+    <p class="text-danger" *ngIf="errorMessage">Username not found in Torre</p>
+    <table class="table table-bordered table-hover">
+        <tbody>
+            <tr *ngFor="let f of friendsList">
+                <td>{{f.name}}</td>
+                <td>{{f.location}}</td>
+                <td>@{{f.username}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

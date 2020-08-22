@@ -1,0 +1,36 @@
+<div class="container-fluid home">
+    <img [src]="user.picture" alt="img" class="img-rounded">
+    <h3>{{user.name}}</h3>
+    <h4>Torre username: {{user.username}}</h4>
+    <h4>Location: {{user.location}}</h4>
+    <div class="home" style="border: 3px solid #0000FF;">
+        <h4>Your Torre stats:</h4>
+        <div class="container-fluid stats">
+            <div class="stats_child">
+                <p>education</p>
+                <p>{{user.stats.education}}</p>
+            </div>
+            <div class="stats_child">
+                <p>interests</p>
+                <p>{{user.stats.interests}}</p>
+            </div>
+            <div class="stats_child">
+                <p>projects</p>
+                <p>{{user.stats.projects}}</p>
+            </div>
+            <div class="stats_child">
+                <p>jobs</p>
+                <p>{{user.stats.jobs}}</p>
+            </div>
+            <div class="stats_child">
+                <p>strengths</p>
+                <p>{{user.stats.strengths}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="button-container">
+        <button type="button" class="btn btn-primary" style="margin-right: 50px" (click)="friendsList()">Friends List</button>
+        <button type="button" class="btn btn-primary" style="margin-left: 50px" (click)="opportunitiesList()">Opportunities List</button>
+    </div>
+    <button type="button" class="btn btn-danger" style="margin-top: 100px;" (click)="logOut()">Log out</button>
+</div>
