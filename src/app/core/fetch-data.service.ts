@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FetchDataService {
-  api_url = "http://localhost:5000"
+  api_url = "https://torre-back-2.herokuapp.com"
   constructor(
     private httpClient: HttpClient,
   ) { }
