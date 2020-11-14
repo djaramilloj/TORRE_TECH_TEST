@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class FetchDataService {
-  api_url = "https://torre-backend.herokuapp.com"
+  api_url = "http://localhost:5000"
   constructor(
     private httpClient: HttpClient,
   ) { }
@@ -18,10 +18,9 @@ export class FetchDataService {
     return req;
   }
 
-  logIn(data: any): Observable<any> {
-    const url = `${this.api_url}/auth/login`;
-    let headers = new HttpHeaders({ 'Content-Type': 'application/JSON' });
-    const req = this.httpClient.post(url, data, {headers: headers, responseType: 'json'});
+  getUserInfo(): Observable<any> {
+    const url = `${this.api_url}/auth/userinfo`;
+    const req = this.httpClient.get(url);
     return req;
   }
 

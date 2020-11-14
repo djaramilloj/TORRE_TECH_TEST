@@ -1,17 +1,13 @@
 <div class="container-fluid container-signup">
-    <h1>WELCOME TO TORRE SOCIAL - SIGN UP</h1>
-    <h4>Please provide your torre username</h4>
+    <h1>WELCOME TO TORRE DASHBOARD</h1>
+    <h4>Please provide your Torre's username, so we can get your info</h4>
     <div class="input-group">
         <span class="input-group-addon" id="basic-addon1">@</span>
         <div class="actions-group">
             <input type="text" [(ngModel)]="username" class="form-control" placeholder="Username" aria-describedby="basic-addon1">
-            <button type="button" class="btn btn-primary" (click)="showPassInput = true" *ngIf="!showPassInput">Go</button>
-        </div>
-        <div class="actions-group">
-            <input type="password" [(ngModel)]="password" *ngIf="showPassInput" class="form-control" placeholder="Password" aria-describedby="basic-addon1">
-            <button type="button" class="btn btn-primary" (click)="lookForUsername()" *ngIf="showPassInput">Sign Up</button>
+            <button type="button" class="btn btn-primary" (click)="lookForUsername()">Go</button>
         </div>
     </div>
     <p class="text-warning" *ngIf="waitingInfo">Wait a minute... finding your data in Torre</p>
-    <p class="text-danger" *ngIf="errorMessage">Username not found in Torre</p>
+    <p class="text-danger" *ngIf="errorMessage">Torre's server is down or username wasn't found in Torre</p>
 </div>

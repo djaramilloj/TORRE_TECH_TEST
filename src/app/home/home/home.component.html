@@ -1,36 +1,20 @@
-<div class="container-fluid home">
-    <img [src]="user.picture" alt="img" class="img-rounded">
-    <h3>{{user.name}}</h3>
-    <h4>Torre username: {{user.username}}</h4>
-    <h4>Location: {{user.location}}</h4>
-    <div class="home" style="border: 3px solid #0000FF;">
-        <h4>Your Torre stats:</h4>
-        <div class="container-fluid stats">
-            <div class="stats_child">
-                <p>education</p>
-                <p>{{user.stats.education}}</p>
-            </div>
-            <div class="stats_child">
-                <p>interests</p>
-                <p>{{user.stats.interests}}</p>
-            </div>
-            <div class="stats_child">
-                <p>projects</p>
-                <p>{{user.stats.projects}}</p>
-            </div>
-            <div class="stats_child">
-                <p>jobs</p>
-                <p>{{user.stats.jobs}}</p>
-            </div>
-            <div class="stats_child">
-                <p>strengths</p>
-                <p>{{user.stats.strengths}}</p>
-            </div>
-        </div>
-    </div>
-    <div class="button-container">
-        <button type="button" class="btn btn-primary" style="margin-right: 50px" (click)="friendsList()">Friends List</button>
-        <button type="button" class="btn btn-primary" style="margin-left: 50px" (click)="opportunitiesList()">Opportunities List</button>
-    </div>
-    <button type="button" class="btn btn-danger" style="margin-top: 100px;" (click)="logOut()">Log out</button>
-</div>
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title>Torre username: {{user.username}}</mat-card-title>
+        <mat-card-subtitle>Location: {{user.location}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="user.picture" alt="Torre's profile picture">
+    <mat-card-content>
+        <mat-chip-list aria-label="Color selection">
+            <mat-chip selected> Education: {{user.stats.education}}</mat-chip>
+            <mat-chip selected> Interests: {{user.stats.interests}}</mat-chip>
+            <mat-chip selected> Projects: {{user.stats.projects}}</mat-chip>
+            <mat-chip selected> Jobs: {{user.stats.jobs}}</mat-chip>
+            <mat-chip selected> Strengths: {{user.stats.strengths}}</mat-chip>
+        </mat-chip-list>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="friendsList()">Friends List</button>
+        <button mat-button (click)="opportunitiesList()">Opportunities List</button>
+    </mat-card-actions>
+</mat-card>

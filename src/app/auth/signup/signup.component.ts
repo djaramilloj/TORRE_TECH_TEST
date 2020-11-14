@@ -13,7 +13,6 @@ export class SignupComponent implements OnInit {
 
   username: string;
   password: string;
-  showPassInput: boolean = false;
   errorMessage: boolean = false;
   waitingInfo: boolean = false;
   constructor(
@@ -33,20 +32,22 @@ export class SignupComponent implements OnInit {
     this.waitingInfo = true;
     const data = {
       username: this.username,
-      password: this.password,
     }
     this.fetchData.signupByUsernameAndPassword(JSON.stringify(data))
       .toPromise()
       .then((data) => {
-        console.log(data);
-        
+        this.holdData.userInfo = data.userData;
         this.waitingInfo = false;
         if(data.error === true) {
           this.errorMessage = true;
         } else{
           this.holdData.userId = data.userId;
-          this.router.navigate(['auth/login']);
+          this.router.navigate(['/home']);
         }
+      }).catch(error => {
+        console.error(error);
+        this.waitingInfo = false;
+        this.errorMessage = true;
       })
   }
 }

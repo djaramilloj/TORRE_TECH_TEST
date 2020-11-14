@@ -1,12 +1,12 @@
 <div class="container-fluid lists-fr">
         <h2>Add your job opportunities from Torre</h2>
         <h4>Search for the top job opportunities at Torre and add them to your personal watch list</h4>
-        <div style="display: flex; flex-direction: row;">
-            <div class="search_oppt" style="margin-left: 30px;">
+        <div class="container-table">
+            <div class="search_oppt">
                 <button type="button" class="btn btn-primary" (click)="showSize = true;">Top job opportunities</button>
                 <div *ngIf="showSize" class="search__input">
                     <p>How many jobs opportunities would you like to search?</p>
-                    <div style="display: flex; flex-direction: row;">
+                    <div class="detail-table">
                         <input type="text" [(ngModel)]="size" class="form-control" aria-describedby="basic-addon1">
                         <button type="button" class="btn btn-primary" (click)="search()">Go</button>
                     </div>

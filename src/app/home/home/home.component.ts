@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { HoldDataService } from '../../core/hold-data.service';
+import { FetchDataService } from '../../core/fetch-data.service';
 
 
 @Component({
@@ -12,18 +13,17 @@ import { HoldDataService } from '../../core/hold-data.service';
 export class HomeComponent implements OnInit {
 
   user: any;
+  stats: Array<any>;
   constructor(
     // services
     private holdData: HoldDataService,
+    private fetchData: FetchDataService,
     // angular
     private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.user = this.holdData.userInfo;
-    if (!this.user) {
-      this.router.navigate(['auth/login'])
-    }
   }
 
   friendsList() {

@@ -9,18 +9,25 @@
         margin-right: 10px;
     }
 }
-
+.conatiner-table{
+    display: flex; 
+    flex-direction: row;
+}
 .search_oppt {
-    display: flex;
+    display: inherit;
     flex-direction: column;
+    margin-left: 30px;
     button {
         margin-bottom: 10px;
     }
 }
-
 .search__input {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+}
+.detail-table{
+    display: inherit; 
+    flex-direction: row;
 }
