@@ -18,25 +18,6 @@ async function createUser(data) {
     })
 }
 
-async function logIn(username) {
-    return new Promise(async (resolve, reject) => {
-        let userFound = false;
-        const service = firebase.firestore();
-        const ref = service.collection('users')
-        const result = await ref.get();
-        result.forEach(d => {
-            if (username === d.data().username) {
-                // user found
-                userFound = true;
-                resolve(d.data());
-            }
-        });
-        if(userFound === false){
-            reject('Invalid credentials');
-        }
-    })
-}
-
 async function addNewFriend(data) {
     return new Promise(async (resolve, reject) => {
         const service = firebase.firestore();
@@ -73,12 +54,28 @@ async function getCurrentFriends(userId) {
     })
 }
 
+async function getUserInfo(userId) {
+    return new Promise(async (resolve, reject) => {
+        const service = firebase.firestore();
+        const ref = service.collection('users')
+        .doc(userId)
+        ref.get()  
+            .then((data) => {
+                resolve(data);
+            })
+            .catch((error)=> {
+                console.error(error)
+                reject('failed to get friends')
+            })
+    }) 
+}
+
 
 
 
 module.exports = {
     createUser,
-    logIn,
     addNewFriend,
+    getUserInfo,
     getCurrentFriends
 }

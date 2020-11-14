@@ -2,58 +2,46 @@ const express = require('express');
 const Router = express.Router();
 const authController = require('./controller');
 const scrapper = require('../../scrapping/index');
+const responses = require('../../libs/responses');
 
 const controllerResponse = new authController();
 
 
 Router.post('/signup', async (req, res) => {
-    const dataGather = await scrapper.run(req.body.username);
-    const data = {
-        ...dataGather,
-        password: req.body.password
-    }
-    
-    controllerResponse.createUserInFirebase(data)
-        .then(data => {
+    try {
+        const dataGather = await scrapper.run(req.body.username);
+        const data = {
+            ...dataGather,
+        }
+        let cookie = req.cookies.userInfo;
+        if (!cookie) {
+            const dataRta = await controllerResponse.createUserInFirebase(data)
             const successMessage = {
-                userId: data,
-                message: `user created with id: ${data}`
+                userId: dataRta,
+                message: `user created with id: ${dataRta}`,
+                userData: data 
             }
             res.send(JSON.stringify(successMessage));
-        })
-        .catch(error => {
-            console.error(error)
-            const errorMessage = {
-                error: true,
-                message: error
-            }
-            res.send(JSON.stringify(errorMessage))
-        })
+        } else {
+            const dataRta = await controllerResponse.getUserInfo(cookie)
+            res.send(dataRta);
+        }
+    } catch (error) {
+        const errorMessage = responses(error);
+        res.status(500).send(JSON.stringify(errorMessage));
+    }
 })
 
 
-Router.post('/login', async (req, res) => {
-    const data = {
-        username: req.body.username,
-        password: req.body.password
+Router.get('/userinfo', async (req, res) => {
+    let cookie = req.headers.cookie;
+    try {
+        const dataRta = await controllerResponse.getUserInfo(cookie)
+        res.send(dataRta);
+    } catch(error) {
+        const errorMessage = responses(error);
+        res.status(500).send(JSON.stringify(errorMessage));
     }
-    controllerResponse.logIn(data)
-        .then(data => {
-            const successMessage = {
-                userData: data,
-                message: `user logged in`
-            }
-            res.cookie('user', data, {maxAge: 60 * 60 * 60 * 24});
-            res.send(JSON.stringify(successMessage));
-        })
-        .catch(error => {
-            console.error(error)
-            const errorMessage = {
-                error: true,
-                message: error
-            }
-            res.send(JSON.stringify(errorMessage));
-        })
 })
 
 module.exports = Router;
